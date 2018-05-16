@@ -13,10 +13,16 @@ public interface AppProperties extends Config {
     @Key("host.url")
     String url();
 
+    @Key("host.basePath")
+    String path();
+
     @Key("user.login")
     String login();
 
     @Key("user.password")
     String password();
+
+    @Key("endpoint.login")
+    String endpointLogin();
 
 }

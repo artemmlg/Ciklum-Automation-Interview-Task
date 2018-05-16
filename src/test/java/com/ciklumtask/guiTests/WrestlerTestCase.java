@@ -1,5 +1,7 @@
 package com.ciklumtask.guiTests;
 
+import com.api.WrestlerController;
+import com.api.WrestlerModel;
 import com.ciklumtask.core.BaseTest;
 import com.pages.LoginPage;
 import com.pages.NewWrestlerTabPage;
@@ -16,11 +18,11 @@ public class WrestlerTestCase extends BaseTest {
     public void beforeMethod() {
         wrestlerPage = new WrestlerPage(driver);
         loginPage = new LoginPage(driver);
-        wrestlerPage.openBaseURL();
     }
 
     @Test
     public void testCreateNewWrestler() {
+        wrestlerPage.openBaseURL();
         loginPage.loginToApplication(userLogin, userPassword);
         wrestlerPage = loginPage.clickLoginButton();
         newWrestlerTabPage = wrestlerPage.clickNew();
@@ -42,4 +44,29 @@ public class WrestlerTestCase extends BaseTest {
         newWrestlerTabPage.acceptForm();
         softAssert.assertAll();
     }
+
+    @Test
+    public void testCreateNewWrestlerViaAPI(){
+        WrestlerModel testWrestler = new WrestlerModel(
+                "Ivan",
+                "11",
+                "10",
+                "2015",
+                "Sidorovich",
+                "Petrov",
+                "Petruk P.P.",
+                "Ivanuk V.V.",
+                "V.1",
+                "25-05-1994",
+                "1",
+                "34",
+                "1",
+                "2",
+                "6",
+                "91"
+                );
+        WrestlerModel wrestlerResponse = new WrestlerController(testWrestler).createNewWrestler();
+        softAssert.assertTrue(wrestlerResponse.getFname().contentEquals("Artem"));
+    }
+
 }
