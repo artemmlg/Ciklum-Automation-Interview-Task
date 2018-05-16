@@ -3,12 +3,14 @@ package com.core;
 import com.config.AppProperties;
 import com.config.WebDriverProperties;
 import org.aeonbits.owner.ConfigFactory;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
+    protected Logger LOG = Logger.getLogger(BasePage.class);
     private static AppProperties appProperties = ConfigFactory.create(AppProperties.class);
     private static WebDriverProperties webDriverProperties = ConfigFactory.create(WebDriverProperties.class);
     private static final String applicationURL = appProperties.protocol() + appProperties.url();
@@ -21,12 +23,12 @@ public class BasePage {
     }
 
     public String getPageTitle(){
-//        LOG.info("Verify web page title");
+        LOG.info("Verify web page title");
         return driver.getTitle();
     }
 
     public void openBaseURL() {
-//        LOG.info("Navigate to " + AppConfig.getCLIENT_AREA());
+        LOG.info("Navigate to " + appProperties.url());
         driver.get(applicationURL);
         try {
             Thread.sleep(100);
