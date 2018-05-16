@@ -5,6 +5,7 @@ import com.core.BasePage;
 import com.utils.webDriver.WebDriverFactory;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
@@ -26,6 +27,11 @@ public abstract class BaseTest {
         softAssert = new SoftAssert();
     }
 
-
+    @AfterClass(alwaysRun = true)
+    public void afterClass() {
+        if (driver != null){
+            driver.quit();
+        }
+    }
 
 }

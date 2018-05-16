@@ -41,6 +41,5 @@ public class WrestlerTestCase extends BaseTest {
                 "Produced");
         newWrestlerTabPage.acceptForm();
         softAssert.assertAll();
-        driver.close();
     }
 }
