@@ -1,4 +1,4 @@
-package com.ciklumTask.core;
+package com.ciklumTask.wrestlerTests;
 
 import com.config.AppProperties;
 import com.core.BasePage;

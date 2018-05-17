@@ -3,7 +3,6 @@ package com.ciklumTask.wrestlerTests;
 import com.api.WrestlerAPIController;
 import com.api.models.CreateWrestlerModel;
 import com.api.models.ReadWrestlerModel;
-import com.ciklumTask.core.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

@@ -1,6 +1,5 @@
 package com.ciklumTask.wrestlerTests;
 
-import com.ciklumTask.core.BaseTest;
 import com.pages.LoginPage;
 import com.pages.NewWrestlerTabPage;
 import com.pages.WrestlerPage;
