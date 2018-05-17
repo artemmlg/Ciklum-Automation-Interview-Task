@@ -54,8 +54,8 @@ public class WrestlerTestCase extends BaseTest {
                 "2",
                 "3",
                 "2015",
-                null,
-                null,
+                "1",
+                "2",
                 "2",
                 "25-05-1994",
                 "1",
@@ -67,7 +67,9 @@ public class WrestlerTestCase extends BaseTest {
                 );
         WrestlerModel wrestlerResponse = new WrestlerController(testWrestler).createNewWrestler();
 //        softAssert.assertTrue(wrestlerResponse.getIdWrestler().contentEquals("1"));
+//        softAssert.assertEquals(wrestlerResponse.getIdWrestler(), "123");
         softAssert.assertAll();
+
     }
 
 }

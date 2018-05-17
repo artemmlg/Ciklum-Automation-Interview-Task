@@ -8,6 +8,7 @@ import javax.annotation.Generated;
 import java.util.Objects;
 
 @Generated("com.robohorse.robopojogenerator")
+@JsonIgnoreProperties(value = {"new", "trainer1", "trainer2", "trainerid1","trainerid2"}) // AS it not represented in GUI Wrestler Creation
 public class WrestlerModel{
 
 	@JsonProperty("result")

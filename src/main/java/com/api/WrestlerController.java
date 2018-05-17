@@ -31,44 +31,30 @@ public class WrestlerController {
                 .setContentType(ContentType.JSON)
                 .log(LogDetail.ALL).build();
 
-//        RestAssured.responseSpecification = new ResponseSpecBuilder()
-//                .expectContentType(ContentType.JSON)
-//                .build();
-
         RestAssured.defaultParser = Parser.JSON;
     }
 
     private Map<String, String> loginToSiteAndGetSessionId() {
+        baseURI = appProperties.protocol() + appProperties.url() + appProperties.endpointLogin();
         HashMap<String, Object> jsonAsMap = new HashMap<>();
-        jsonAsMap.put("username", "auto");
-        jsonAsMap.put("password", "test");
-
-        baseURI = "http://streamtv.net.ua/base/php/login.php";
+        jsonAsMap.put("username", appProperties.login());
+        jsonAsMap.put("password", appProperties.password());
 
         return given()
                 .contentType(ContentType.JSON)
                 .body(jsonAsMap)
                 .when().post()
                 .getCookies();
-        //"PHPSESSID"
     }
 
-//    private String loginToSiteAndGetSessionId2() {
-//        baseURI = "http://streamtv.net.ua/base";
-//        return given().body("{\"username\":\"auto\",\"password\":\"test\"}")
-//                .when().post("/php/login.php").thenReturn()
-//                .getCookie("PHPSESSID");
-//    }
-
-
-        public WrestlerModel createNewWrestler () {
-            return given(requestSpecification)
-                    .body(wrestlerModel)
-                    .expect()
-                    .statusCode(200)
-                    .with()
-                    .cookies(loginToSiteAndGetSessionId())
-                    .post("create.php")
-                    .as(WrestlerModel.class);
-        }
+    public WrestlerModel createNewWrestler() {
+        return given(requestSpecification)
+                .body(wrestlerModel)
+                .expect()
+                .statusCode(200)
+                .with()
+                .cookies(loginToSiteAndGetSessionId())
+                .post(appProperties.endpointCreate())
+                .as(WrestlerModel.class);
     }
+}
