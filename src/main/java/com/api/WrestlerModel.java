@@ -71,7 +71,7 @@ public class WrestlerModel{
 	public WrestlerModel() {
 	}
 
-	public WrestlerModel(String fname, String region1, String region2, String expires, String mname, String lname, String trainer2, String trainer1, String cardState, String dob, String lictype, String style, String fst1, String fst2, String trainerid1, String trainerid2) {
+	public WrestlerModel(String fname, String region1, String region2, String expires, String mname, String lname, String cardState, String dob, String lictype, String style, String fst1, String fst2) {
 		this.fname = fname;
 		this.region1 = region1;
 		this.region2 = region2;

@@ -1,7 +1,5 @@
 package com.ciklumTask.wrestlerTests;
 
-import com.api.WrestlerController;
-import com.api.WrestlerModel;
 import com.ciklumTask.core.BaseTest;
 import com.pages.LoginPage;
 import com.pages.NewWrestlerTabPage;

@@ -16,16 +16,12 @@ public class WrestleAPITestCase extends BaseTest {
                 "2",
                 "3",
                 "2015",
-                "1",
-                "2",
                 "2",
                 "25-05-1994",
                 "1",
                 "2",
                 "2",
-                "3",
-                null,
-                null
+                "3"
         );
         WrestlerModel wrestlerResponse = new WrestlerController(testWrestler).createNewWrestler();
         softAssert.assertTrue(wrestlerResponse.getResult(), "Wrestler is not created!");
