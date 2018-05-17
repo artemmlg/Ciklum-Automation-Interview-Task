@@ -1,15 +1,15 @@
-package com.ciklumtask.guiTests;
+package com.ciklumTask.wrestlerTests;
 
 import com.api.WrestlerController;
 import com.api.WrestlerModel;
-import com.ciklumtask.core.BaseTest;
+import com.ciklumTask.core.BaseTest;
 import com.pages.LoginPage;
 import com.pages.NewWrestlerTabPage;
 import com.pages.WrestlerPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class WrestlerTestCase extends BaseTest {
+public class WrestlerGUITestCase extends BaseTest {
     private WrestlerPage wrestlerPage;
     private NewWrestlerTabPage newWrestlerTabPage;
     private LoginPage loginPage;
@@ -43,33 +43,6 @@ public class WrestlerTestCase extends BaseTest {
                 "Produced");
         newWrestlerTabPage.acceptForm();
         softAssert.assertAll();
-    }
-
-    @Test
-    public void testCreateNewWrestlerViaAPI(){
-        WrestlerModel testWrestler = new WrestlerModel(
-                "aaaaaaa",
-                "6",
-                "3",
-                "2",
-                "3",
-                "2015",
-                "1",
-                "2",
-                "2",
-                "25-05-1994",
-                "1",
-                "2",
-                "2",
-                "3",
-                null,
-                null
-                );
-        WrestlerModel wrestlerResponse = new WrestlerController(testWrestler).createNewWrestler();
-//        softAssert.assertTrue(wrestlerResponse.getIdWrestler().contentEquals("1"));
-//        softAssert.assertEquals(wrestlerResponse.getIdWrestler(), "123");
-        softAssert.assertAll();
-
     }
 
 }
