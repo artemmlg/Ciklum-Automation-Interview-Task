@@ -18,9 +18,6 @@ import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
 public class WrestlerController {
-    private Response response;
-    private String cookieValue;
-    private String jsonCred = "{\"username\":\"auto\",\"password\":\"test\"}";
     private static AppProperties appProperties = ConfigFactory.create(AppProperties.class);
     private RequestSpecification requestSpecification;
     private WrestlerModel wrestlerModel;
@@ -34,12 +31,11 @@ public class WrestlerController {
                 .setContentType(ContentType.JSON)
                 .log(LogDetail.ALL).build();
 
-        RestAssured.responseSpecification = new ResponseSpecBuilder()
-                .expectContentType("text/html; charset=UTF-8")
-                .build();
+//        RestAssured.responseSpecification = new ResponseSpecBuilder()
+//                .expectContentType(ContentType.JSON)
+//                .build();
 
-        RestAssured.defaultParser = Parser.fromContentType("text/html; charset=UTF-8");
-//                Parser.JSON;
+        RestAssured.defaultParser = Parser.JSON;
     }
 
     private Map<String, String> loginToSiteAndGetSessionId() {
@@ -52,16 +48,24 @@ public class WrestlerController {
         return given()
                 .contentType(ContentType.JSON)
                 .body(jsonAsMap)
-                .when().post().thenReturn()
+                .when().post()
                 .getCookies();
         //"PHPSESSID"
     }
+
+//    private String loginToSiteAndGetSessionId2() {
+//        baseURI = "http://streamtv.net.ua/base";
+//        return given().body("{\"username\":\"auto\",\"password\":\"test\"}")
+//                .when().post("/php/login.php").thenReturn()
+//                .getCookie("PHPSESSID");
+//    }
 
 
         public WrestlerModel createNewWrestler () {
             return given(requestSpecification)
                     .body(wrestlerModel)
-                    .when()
+                    .expect()
+                    .statusCode(200)
                     .with()
                     .cookies(loginToSiteAndGetSessionId())
                     .post("create.php")

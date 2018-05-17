@@ -33,8 +33,8 @@ public class WrestlerTestCase extends BaseTest {
                 "05121992",
                 "Odeska",
                 "AR Krym",
-                "Kolos",
-                "SK",
+                "2",
+                "3",
                 "V.Klitschko",
                 "M.Klitschko",
                 "FW",
@@ -48,25 +48,26 @@ public class WrestlerTestCase extends BaseTest {
     @Test
     public void testCreateNewWrestlerViaAPI(){
         WrestlerModel testWrestler = new WrestlerModel(
-                "Ivan",
-                "11",
-                "10",
+                "aaaaaaa",
+                "6",
+                "3",
+                "2",
+                "3",
                 "2015",
-                "Sidorovich",
-                "Petrov",
-                "Petruk P.P.",
-                "Ivanuk V.V.",
-                "V.1",
+                null,
+                null,
+                "2",
                 "25-05-1994",
                 "1",
-                "34",
-                "1",
                 "2",
-                "6",
-                "91"
+                "2",
+                "3",
+                null,
+                null
                 );
         WrestlerModel wrestlerResponse = new WrestlerController(testWrestler).createNewWrestler();
-        softAssert.assertTrue(wrestlerResponse.getFname().contentEquals("Artem"));
+//        softAssert.assertTrue(wrestlerResponse.getIdWrestler().contentEquals("1"));
+        softAssert.assertAll();
     }
 
 }

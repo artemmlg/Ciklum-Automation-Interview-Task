@@ -1,6 +1,7 @@
 package com.api;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.annotation.Generated;
@@ -8,6 +9,15 @@ import java.util.Objects;
 
 @Generated("com.robohorse.robopojogenerator")
 public class WrestlerModel{
+
+	@JsonProperty("result")
+	private boolean result;
+
+	@JsonProperty("new")
+	private String jsonMemberNew;
+
+	@JsonProperty("id")
+	private String idWrestler;
 
 	@JsonProperty("fname")
 	private String fname;
@@ -60,7 +70,7 @@ public class WrestlerModel{
 	public WrestlerModel() {
 	}
 
-	public WrestlerModel(String fname, String region1, String region2, String expires, String mname, String lname, String trainer2, String trainer1, String cardState, String dob, String lictype, String trainerid2, String style, String fst1, String fst2, String trainerid1) {
+	public WrestlerModel(String fname, String region1, String region2, String expires, String mname, String lname, String trainer2, String trainer1, String cardState, String dob, String lictype, String style, String fst1, String fst2, String trainerid1, String trainerid2) {
 		this.fname = fname;
 		this.region1 = region1;
 		this.region2 = region2;
@@ -72,11 +82,11 @@ public class WrestlerModel{
 		this.cardState = cardState;
 		this.dob = dob;
 		this.lictype = lictype;
-		this.trainerid2 = trainerid2;
 		this.style = style;
 		this.fst1 = fst1;
 		this.fst2 = fst2;
 		this.trainerid1 = trainerid1;
+		this.trainerid2 = trainerid2;
 	}
 
 	public void setFname(String fname){
@@ -203,8 +213,24 @@ public class WrestlerModel{
 		this.trainerid1 = trainerid1;
 	}
 
-	public String getTrainerid1(){
-		return trainerid1;
+	public String getJsonMemberNew(){
+		return jsonMemberNew;
+	}
+
+	public void setIdWrestler(String idWrestler){
+		this.idWrestler = idWrestler;
+	}
+
+	public String getIdWrestler(){
+		return idWrestler;
+	}
+
+	public void setResult(boolean result){
+		this.result = result;
+	}
+
+	public boolean isResult(){
+		return result;
 	}
 
 	@Override
@@ -212,7 +238,9 @@ public class WrestlerModel{
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		WrestlerModel that = (WrestlerModel) o;
-		return Objects.equals(fname, that.fname) &&
+		return Objects.equals(jsonMemberNew, that.jsonMemberNew) &&
+				Objects.equals(idWrestler, that.idWrestler) &&
+				Objects.equals(fname, that.fname) &&
 				Objects.equals(region1, that.region1) &&
 				Objects.equals(region2, that.region2) &&
 				Objects.equals(expires, that.expires) &&

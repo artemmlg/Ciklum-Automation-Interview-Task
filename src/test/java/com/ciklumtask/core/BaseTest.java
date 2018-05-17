@@ -26,7 +26,7 @@ public abstract class BaseTest {
     @BeforeClass
     public void beforeClass() {
         LOG.info("Driver initialization");
-        driver = WebDriverFactory.setWebDriver();
+//        driver = WebDriverFactory.setWebDriver();
         basePage = new BasePage(driver);
         softAssert = new SoftAssert();
     }
