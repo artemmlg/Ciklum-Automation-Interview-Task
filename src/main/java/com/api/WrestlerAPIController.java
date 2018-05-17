@@ -2,6 +2,7 @@ package com.api;
 
 import com.api.models.CreateWrestlerModel;
 import com.api.models.ReadWrestlerModel;
+import com.api.models.UpdateWrestlerModel;
 import com.config.AppProperties;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -21,6 +22,7 @@ public class WrestlerAPIController {
     private static AppProperties appProperties = ConfigFactory.create(AppProperties.class);
     private RequestSpecification requestSpecification;
     private CreateWrestlerModel createWrestlerModel;
+    private UpdateWrestlerModel updateWrestlerModel = new UpdateWrestlerModel();
 
     public WrestlerAPIController(CreateWrestlerModel createWrestlerModel) {
         this.createWrestlerModel = createWrestlerModel;
@@ -65,5 +67,16 @@ public class WrestlerAPIController {
                 .cookies(loginAndGetSessionID())
                 .get(appProperties.endpointRead())
                 .as(ReadWrestlerModel.class);
+    }
+
+    public CreateWrestlerModel updateWrestler() {
+        return given(requestSpecification)
+                .body(updateWrestlerModel)
+                .expect()
+                .statusCode(200)
+                .with()
+                .cookies(loginAndGetSessionID())
+                .put("update.php")
+                .as(CreateWrestlerModel.class);
     }
 }

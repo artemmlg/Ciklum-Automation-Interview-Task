@@ -1,26 +1,16 @@
 package com.api.models;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.annotation.Generated;
+import java.util.List;
 
 @Generated("com.robohorse.robopojogenerator")
-@JsonIgnoreProperties(value = {"new", "trainer1", "trainer2", "trainerid1", "trainerid2"})
-public class CreateWrestlerModel {
-
+@JsonIgnoreProperties(value = {"attaches", "trainer1", "trainer2", "trainerid1", "trainerid2"})
+public class UpdateWrestlerModel {
     @JsonProperty("result")
     private boolean result;
-
-    @JsonProperty("new")
-    private String jsonMemberNew;
-
-    @JsonProperty("id")
-    private String id;
-
-    @JsonProperty("id_wrestler")
-    private String idWrestler;
 
     @JsonProperty("fname")
     private String fname;
@@ -34,8 +24,14 @@ public class CreateWrestlerModel {
     @JsonProperty("expires")
     private String expires;
 
+    @JsonProperty("photo")
+    private String photo;
+
     @JsonProperty("mname")
     private String mname;
+
+    @JsonProperty("attaches")
+    private List<AttachesItem> attaches;
 
     @JsonProperty("lname")
     private String lname;
@@ -64,40 +60,17 @@ public class CreateWrestlerModel {
     @JsonProperty("fst1")
     private String fst1;
 
+    @JsonProperty("id")
+    private String id;
+
     @JsonProperty("fst2")
     private String fst2;
 
     @JsonProperty("trainerid1")
     private String trainerid1;
 
-    public CreateWrestlerModel() {
-    }
-
-    public CreateWrestlerModel(String fname, String region1, String region2, String expires, String mname, String lname, String cardState, String dob, String lictype, String style, String fst1, String fst2) {
-        this.fname = fname;
-        this.region1 = region1;
-        this.region2 = region2;
-        this.expires = expires;
-        this.mname = mname;
-        this.lname = lname;
-        this.trainer2 = trainer2;
-        this.trainer1 = trainer1;
-        this.cardState = cardState;
-        this.dob = dob;
-        this.lictype = lictype;
-        this.style = style;
-        this.fst1 = fst1;
-        this.fst2 = fst2;
-        this.trainerid1 = trainerid1;
-        this.trainerid2 = trainerid2;
-    }
-
-    public String getIdWrestler() {
-        return idWrestler;
-    }
-
-    public void setIdWrestler(String idWrestler) {
-        this.idWrestler = idWrestler;
+    public boolean getResult() {
+        return result;
     }
 
     public void setFname(String fname) {
@@ -132,12 +105,28 @@ public class CreateWrestlerModel {
         return expires;
     }
 
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
     public void setMname(String mname) {
         this.mname = mname;
     }
 
     public String getMname() {
         return mname;
+    }
+
+    public void setAttaches(List<AttachesItem> attaches) {
+        this.attaches = attaches;
+    }
+
+    public List<AttachesItem> getAttaches() {
+        return attaches;
     }
 
     public void setLname(String lname) {
@@ -212,6 +201,14 @@ public class CreateWrestlerModel {
         return fst1;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
     public void setFst2(String fst2) {
         this.fst2 = fst2;
     }
@@ -224,23 +221,7 @@ public class CreateWrestlerModel {
         this.trainerid1 = trainerid1;
     }
 
-    public String getJsonMemberNew() {
-        return jsonMemberNew;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setResult(boolean result) {
-        this.result = result;
-    }
-
-    public boolean getResult() {
-        return result;
+    public String getTrainerid1() {
+        return trainerid1;
     }
 }
