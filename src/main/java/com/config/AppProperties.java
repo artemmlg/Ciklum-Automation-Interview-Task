@@ -28,4 +28,7 @@ public interface AppProperties extends Config {
     @Key("endpoint.create")
     String endpointCreate();
 
+    @Key("endpoint.read")
+    String endpointRead();
+
 }

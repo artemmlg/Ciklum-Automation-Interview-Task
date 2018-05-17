@@ -1,7 +1,8 @@
 package com.ciklumTask.wrestlerTests;
 
 import com.api.WrestlerController;
-import com.api.CreateWrestlerModel;
+import com.api.models.CreateWrestlerModel;
+import com.api.models.ReadWrestlerModel;
 import com.ciklumTask.core.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -23,8 +24,8 @@ public class WrestleAPITestCase extends BaseTest {
                 dateOfBirth,
                 String.valueOf(faker.number().numberBetween(1, 3)),
                 String.valueOf(faker.number().numberBetween(1, 3)),
-                "2",
-                "3");
+                String.valueOf(faker.number().numberBetween(2, 3)),
+                String.valueOf(faker.number().numberBetween(2, 3)));
     }
 
     @Test(description = "CREATE")
@@ -37,9 +38,9 @@ public class WrestleAPITestCase extends BaseTest {
 
     @Test(description = "READ")
     public void testReadWrestlerViaAPI() {
-        CreateWrestlerModel wrestlerResponse = new WrestlerController(testWrestler).createNewWrestler();
-        CreateWrestlerModel wrestlerController = new WrestlerController(testWrestler).readWrestler(wrestlerResponse.getIdWrestler());
-        System.out.println(wrestlerController.getFname());
-
+        WrestlerController wrestlerController = new WrestlerController(testWrestler);
+        String getCreatedWrestlerID = wrestlerController.createNewWrestler().getIdWrestler();
+        ReadWrestlerModel readWrestlerModel = wrestlerController.readWrestler(getCreatedWrestlerID);
+        softAssert.assertEquals(testWrestler.getFname(), readWrestlerModel.getFname());
     }
 }

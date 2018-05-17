@@ -1,5 +1,7 @@
 package com.api;
 
+import com.api.models.CreateWrestlerModel;
+import com.api.models.ReadWrestlerModel;
 import com.config.AppProperties;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -32,15 +34,15 @@ public class WrestlerController {
         RestAssured.defaultParser = Parser.JSON;
     }
 
-    private Map<String, String> loginToSiteAndGetSessionId() {
+    private Map<String, String> loginAndGetSessionID() {
         baseURI = appProperties.protocol() + appProperties.url() + appProperties.endpointLogin();
-        HashMap<String, Object> jsonAsMap = new HashMap<>();
-        jsonAsMap.put("username", appProperties.login());
-        jsonAsMap.put("password", appProperties.password());
+        HashMap<String, Object> credentialsMap = new HashMap<>();
+        credentialsMap.put("username", appProperties.login());
+        credentialsMap.put("password", appProperties.password());
 
         return given()
                 .contentType(ContentType.JSON)
-                .body(jsonAsMap)
+                .body(credentialsMap)
                 .when().post()
                 .getCookies();
     }
@@ -51,22 +53,17 @@ public class WrestlerController {
                 .expect()
                 .statusCode(200)
                 .with()
-                .cookies(loginToSiteAndGetSessionId())
+                .cookies(loginAndGetSessionID())
                 .post(appProperties.endpointCreate())
                 .as(CreateWrestlerModel.class);
     }
 
-    public CreateWrestlerModel readWrestler(String wrestlerID) {
+    public ReadWrestlerModel readWrestler(String wrestlerID) {
         return given(requestSpecification)
-                .body(createWrestlerModel)
-//                .queryParam("id", ""+ wrestlerID +"")
-                .parameters("id", ""+ wrestlerID +"")
+                .queryParam("id", "" + wrestlerID + "")
                 .with()
-                .cookies(loginToSiteAndGetSessionId())
-                .get("/read.php")
-                .as(CreateWrestlerModel.class);
+                .cookies(loginAndGetSessionID())
+                .get(appProperties.endpointRead())
+                .as(ReadWrestlerModel.class);
     }
-
-
-
 }
