@@ -17,12 +17,12 @@ import java.util.Map;
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
-public class WrestlerController {
+public class WrestlerAPIController {
     private static AppProperties appProperties = ConfigFactory.create(AppProperties.class);
     private RequestSpecification requestSpecification;
     private CreateWrestlerModel createWrestlerModel;
 
-    public WrestlerController(CreateWrestlerModel createWrestlerModel) {
+    public WrestlerAPIController(CreateWrestlerModel createWrestlerModel) {
         this.createWrestlerModel = createWrestlerModel;
 
         requestSpecification = new RequestSpecBuilder()
