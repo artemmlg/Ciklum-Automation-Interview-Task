@@ -75,12 +75,15 @@ public class WrestleAPITestCase extends BaseTest {
         testWrestler.setExpires("2013");
         CreateWrestlerModel wrestlerResponse = wrestlerAPIController.updateWrestler();
         softAssert.assertTrue(wrestlerResponse.getResult(), "Wrestler wasn't updated!");
+        softAssert.assertAll();
     }
 
     @Test(description ="DELETE / DELETE Method")
     public void testDeleteWrestlerViaAPI(){
         wrestlerAPIController = new WrestlerAPIController(testWrestler);
         String getCreatedWrestlerID = wrestlerAPIController.createNewWrestler().getId();
-        wrestlerAPIController.deleteWrestler(getCreatedWrestlerID);
+        boolean isDeleted = wrestlerAPIController.deleteWrestler(getCreatedWrestlerID).getResult();
+        softAssert.assertTrue(isDeleted);
+        softAssert.assertAll();
     }
 }

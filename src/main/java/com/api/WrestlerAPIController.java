@@ -78,13 +78,12 @@ public class WrestlerAPIController {
                 .as(CreateWrestlerModel.class);
     }
 
-    public void deleteWrestler(String wrestlerID) {
-        given(requestSpecification)
+    public CreateWrestlerModel deleteWrestler(String wrestlerID) {
+        return given(requestSpecification)
                 .queryParam("id", "" + wrestlerID + "")
                 .with()
                 .cookies(loginAndGetSessionID())
                 .delete("delete.php")
-                .then()
-                .statusCode(200);
+                .as(CreateWrestlerModel.class);
     }
 }
