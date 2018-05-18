@@ -2,7 +2,7 @@ package com.ciklumTask.wrestlerTests;
 
 import com.config.AppProperties;
 import com.core.BasePage;
-import com.github.javafaker.Faker;
+import com.utils.webDriver.WebDriverFactory;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -15,9 +15,8 @@ import java.lang.reflect.Method;
 
 public abstract class BaseTest {
     private static AppProperties appProperties = ConfigFactory.create(AppProperties.class);
-    protected Faker faker;
-    protected static final String userLogin = appProperties.login();
-    protected static final String userPassword = appProperties.password();
+    static final String userLogin = appProperties.login();
+    static final String userPassword = appProperties.password();
     protected Logger LOG = Logger.getLogger(BaseTest.class);
 
     protected WebDriver driver;
@@ -27,10 +26,9 @@ public abstract class BaseTest {
     @BeforeClass
     public void beforeClass() {
         LOG.info("Driver initialization");
-//        driver = WebDriverFactory.setWebDriver();
+        driver = WebDriverFactory.setWebDriver();
         basePage = new BasePage(driver);
         softAssert = new SoftAssert();
-        faker = new Faker();
     }
 
     @BeforeMethod

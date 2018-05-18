@@ -2,10 +2,14 @@ package com.ciklumTask.wrestlerTests;
 
 import com.api.WrestlerAPIController;
 import com.api.WrestlerModel;
+import com.github.javafaker.Faker;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
-public class WrestleAPITestCase extends BaseTest {
+public class WrestleAPITestCase {
+    private Faker faker = new Faker();
+    private SoftAssert softAssert = new SoftAssert();
     private WrestlerModel testWrestler;
     private WrestlerAPIController wrestlerAPIController;
 
