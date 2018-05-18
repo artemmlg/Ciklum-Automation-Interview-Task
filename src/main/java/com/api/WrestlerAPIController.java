@@ -77,4 +77,14 @@ public class WrestlerAPIController {
                 .put("update.php")
                 .as(CreateWrestlerModel.class);
     }
+
+    public void deleteWrestler(String wrestlerID) {
+        given(requestSpecification)
+                .queryParam("id", "" + wrestlerID + "")
+                .with()
+                .cookies(loginAndGetSessionID())
+                .delete("delete.php")
+                .then()
+                .statusCode(200);
+    }
 }

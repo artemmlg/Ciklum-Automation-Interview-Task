@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 public class WrestleAPITestCase extends BaseTest {
     private CreateWrestlerModel testWrestler;
+    private WrestlerAPIController wrestlerAPIController;
 
     @BeforeMethod
     public void beforeMethod() {
@@ -27,7 +28,7 @@ public class WrestleAPITestCase extends BaseTest {
                 String.valueOf(faker.number().numberBetween(2, 3)));
     }
 
-    @Test(description = "CREATE / POST")
+    @Test(description = "CREATE / POST Method")
     public void testCreateNewWrestlerViaAPI() {
         CreateWrestlerModel wrestlerResponse = new WrestlerAPIController(testWrestler).createNewWrestler();
         softAssert.assertTrue(wrestlerResponse.getResult(), "Wrestler is not created! > Result: False");
@@ -35,9 +36,9 @@ public class WrestleAPITestCase extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(description = "READ / GET")
+    @Test(description = "READ / GET Method")
     public void testReadWrestlerViaAPI() {
-        WrestlerAPIController wrestlerAPIController = new WrestlerAPIController(testWrestler);
+        wrestlerAPIController = new WrestlerAPIController(testWrestler);
         String getCreatedWrestlerID = wrestlerAPIController.createNewWrestler().getId();
         ReadWrestlerModel readWrestlerModel = wrestlerAPIController.readWrestler(getCreatedWrestlerID);
         softAssert.assertEquals(testWrestler.getFname(), readWrestlerModel.getFname());
@@ -51,14 +52,13 @@ public class WrestleAPITestCase extends BaseTest {
         softAssert.assertEquals(testWrestler.getFst2(), readWrestlerModel.getFst2());
         softAssert.assertEquals(testWrestler.getExpires(), readWrestlerModel.getExpires());
         softAssert.assertEquals(testWrestler.getLictype(), readWrestlerModel.getLictype());
-        softAssert.assertEquals(testWrestler.getCardState(), readWrestlerModel.getCardState());
         softAssert.assertAll();
     }
 
-    @Test(description = "UPDATE / PUT")
+    @Test(description = "UPDATE / PUT Method")
     public void testUpdateWrestlerViaAPI() {
         String addition = String.valueOf(System.currentTimeMillis());
-        WrestlerAPIController wrestlerAPIController = new WrestlerAPIController(testWrestler);
+        wrestlerAPIController = new WrestlerAPIController(testWrestler);
         String getCreatedWrestlerID = wrestlerAPIController.createNewWrestler().getId();
         testWrestler.setIdWrestler(getCreatedWrestlerID);
         testWrestler.setFname("updatedFirstName" + addition);
@@ -75,5 +75,12 @@ public class WrestleAPITestCase extends BaseTest {
         testWrestler.setExpires("2013");
         CreateWrestlerModel wrestlerResponse = wrestlerAPIController.updateWrestler();
         softAssert.assertTrue(wrestlerResponse.getResult(), "Wrestler wasn't updated!");
+    }
+
+    @Test(description ="DELETE / DELETE Method")
+    public void testDeleteWrestlerViaAPI(){
+        wrestlerAPIController = new WrestlerAPIController(testWrestler);
+        String getCreatedWrestlerID = wrestlerAPIController.createNewWrestler().getId();
+        wrestlerAPIController.deleteWrestler(getCreatedWrestlerID);
     }
 }
