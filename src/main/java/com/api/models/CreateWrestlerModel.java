@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.annotation.Generated;
 
 @Generated("com.robohorse.robopojogenerator")
-@JsonIgnoreProperties(value = {"new", "trainer1", "trainer2", "trainerid1", "trainerid2"})
+@JsonIgnoreProperties(value = {"new", "trainer1", "trainer2", "trainerid1", "trainerid2", "attaches"})
 public class CreateWrestlerModel {
 
     @JsonProperty("result")
