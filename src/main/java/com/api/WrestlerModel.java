@@ -1,4 +1,4 @@
-package com.api.models;
+package com.api;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.annotation.Generated;
 
 @Generated("com.robohorse.robopojogenerator")
-@JsonIgnoreProperties(value = {"new", "trainer1", "trainer2", "trainerid1", "trainerid2", "attaches"})
-public class CreateWrestlerModel {
+@JsonIgnoreProperties(value = {"new", "trainer1", "trainer2", "trainerid1", "trainerid2", "attaches", "photo"})
+public class WrestlerModel {
 
     @JsonProperty("result")
     private boolean result;
@@ -70,10 +70,10 @@ public class CreateWrestlerModel {
     @JsonProperty("trainerid1")
     private String trainerid1;
 
-    public CreateWrestlerModel() {
+    public WrestlerModel() {
     }
 
-    public CreateWrestlerModel(String fname, String region1, String region2, String expires, String mname, String lname, String cardState, String dob, String lictype, String style, String fst1, String fst2) {
+    public WrestlerModel(String fname, String region1, String region2, String expires, String mname, String lname, String cardState, String dob, String lictype, String style, String fst1, String fst2) {
         this.fname = fname;
         this.region1 = region1;
         this.region2 = region2;

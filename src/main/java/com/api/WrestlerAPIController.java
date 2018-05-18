@@ -1,7 +1,5 @@
 package com.api;
 
-import com.api.models.CreateWrestlerModel;
-import com.api.models.ReadWrestlerModel;
 import com.config.AppProperties;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -20,10 +18,10 @@ import static io.restassured.RestAssured.given;
 public class WrestlerAPIController {
     private static AppProperties appProperties = ConfigFactory.create(AppProperties.class);
     private RequestSpecification requestSpecification;
-    private CreateWrestlerModel createWrestlerModel;
+    private WrestlerModel wrestlerModel;
 
-    public WrestlerAPIController(CreateWrestlerModel createWrestlerModel) {
-        this.createWrestlerModel = createWrestlerModel;
+    public WrestlerAPIController(WrestlerModel wrestlerModel) {
+        this.wrestlerModel = wrestlerModel;
 
         requestSpecification = new RequestSpecBuilder()
                 .setBaseUri(appProperties.protocol() + appProperties.url())
@@ -47,43 +45,43 @@ public class WrestlerAPIController {
                 .getCookies();
     }
 
-    public CreateWrestlerModel createNewWrestler() {
+    public WrestlerModel createNewWrestler() {
         return given(requestSpecification)
-                .body(createWrestlerModel)
+                .body(wrestlerModel)
                 .expect()
                 .statusCode(200)
                 .with()
                 .cookies(loginAndGetSessionID())
                 .post(appProperties.endpointCreate())
-                .as(CreateWrestlerModel.class);
+                .as(WrestlerModel.class);
     }
 
-    public ReadWrestlerModel readWrestler(String wrestlerID) {
+    public WrestlerModel readWrestler(String wrestlerID) {
         return given(requestSpecification)
                 .queryParam("id", "" + wrestlerID + "")
                 .with()
                 .cookies(loginAndGetSessionID())
                 .get(appProperties.endpointRead())
-                .as(ReadWrestlerModel.class);
+                .as(WrestlerModel.class);
     }
 
-    public CreateWrestlerModel updateWrestler() {
+    public WrestlerModel updateWrestler() {
         return given(requestSpecification)
-                .body(createWrestlerModel)
+                .body(wrestlerModel)
                 .expect()
                 .statusCode(200)
                 .with()
                 .cookies(loginAndGetSessionID())
-                .put("update.php")
-                .as(CreateWrestlerModel.class);
+                .put(appProperties.endpointUpdate())
+                .as(WrestlerModel.class);
     }
 
-    public CreateWrestlerModel deleteWrestler(String wrestlerID) {
+    public WrestlerModel deleteWrestler(String wrestlerID) {
         return given(requestSpecification)
                 .queryParam("id", "" + wrestlerID + "")
                 .with()
                 .cookies(loginAndGetSessionID())
-                .delete("delete.php")
-                .as(CreateWrestlerModel.class);
+                .delete(appProperties.endpointDelete())
+                .as(WrestlerModel.class);
     }
 }

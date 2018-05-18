@@ -31,4 +31,10 @@ public interface AppProperties extends Config {
     @Key("endpoint.read")
     String endpointRead();
 
+    @Key("endpoint.update")
+    String endpointUpdate();
+
+    @Key("endpoint.delete")
+    String endpointDelete();
+
 }
