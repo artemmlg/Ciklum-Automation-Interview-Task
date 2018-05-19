@@ -22,7 +22,7 @@ public class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public String getPageTitle(){
+    public String getPageTitle() {
         LOG.info("Verify web page title");
         return driver.getTitle();
     }
@@ -39,13 +39,7 @@ public class BasePage {
         webElement.sendKeys(value);
     }
 
-    protected void submitBtn(WebElement webElement){
-        LOG.info("Submit Element: " + webElement.getTagName() + ", with text: " + webElement.getText());
-        waitForElementDisplayed(webElement);
-        webElement.submit();
-    }
-
-    protected void clickBtn(WebElement webElement){
+    public void baseClick(WebElement webElement) {
         LOG.info("Click on Element: " + webElement.getTagName() + ", with text: " + webElement.getText());
         waitForElementDisplayed(webElement);
         webElement.click();

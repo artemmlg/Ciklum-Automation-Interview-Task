@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -32,14 +32,14 @@ public class LoginPage extends BasePage{
         passwordField.sendKeys(passwordValue);
     }
 
-    public void loginToApplication(String login, String password){
+    public void loginToApplication(String login, String password) {
         clearAndTypeLoginField(login);
         clearAndTypePasswordField(password);
     }
 
-    public GridPage clickLoginButton(){
+    public GridPage clickLoginButton() {
         waitForElementDisplayed(loginBtn);
-        clickBtn(loginBtn);
+        baseClick(loginBtn);
         return new GridPage(driver);
     }
 

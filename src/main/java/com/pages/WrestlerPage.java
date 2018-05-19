@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
+import java.util.Objects;
 
 public class WrestlerPage extends BasePage {
     public WrestlerPage(WebDriver driver) {
@@ -137,7 +138,7 @@ public class WrestlerPage extends BasePage {
     }
 
     public void clickAcceptNewWrestler() {
-        clickBtn(acceptBtn);
+        baseClick(acceptBtn);
     }
 
     public WebElement getPhotoPanel() {
@@ -148,5 +149,91 @@ public class WrestlerPage extends BasePage {
     public WebElement getDocumentsPanel() {
         waitForElementDisplayed(documentsPanel);
         return documentsPanel;
+    }
+
+    public WebElement getFname() {
+        return fName;
+    }
+
+    public WebElement getLname() {
+        return lName;
+    }
+
+    public WebElement getMname() {
+        return mName;
+    }
+
+    public WebElement getdOfBirth() {
+        return dOfBirth;
+    }
+
+    public WebElement getTrainerFirstField() {
+        return trainerFirstField;
+    }
+
+    public WebElement getTrainerSecondField() {
+        return trainerSecondField;
+    }
+
+    public List<WebElement> getRegionFirstDropdown() {
+        return regionFirstDropdown;
+    }
+
+    public List<WebElement> getRegionSecondDropdown() {
+        return regionSecondDropdown;
+    }
+
+    public List<WebElement> getFstFirst() {
+        return fstFirst;
+    }
+
+    public List<WebElement> getFstSecond() {
+        return fstSecond;
+    }
+
+    public List<WebElement> getStyle() {
+        return style;
+    }
+
+    public List<WebElement> getAgeField() {
+        return ageField;
+    }
+
+    public List<WebElement> getStatusField() {
+        return statusField;
+    }
+
+    public WebElement getYearField() {
+        return yearField;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WrestlerPage that = (WrestlerPage) o;
+        return Objects.equals(photoPanel, that.photoPanel) &&
+                Objects.equals(documentsPanel, that.documentsPanel) &&
+                Objects.equals(fName, that.fName) &&
+                Objects.equals(lName, that.lName) &&
+                Objects.equals(mName, that.mName) &&
+                Objects.equals(dOfBirth, that.dOfBirth) &&
+                Objects.equals(trainerFirstField, that.trainerFirstField) &&
+                Objects.equals(trainerSecondField, that.trainerSecondField) &&
+                Objects.equals(regionFirstDropdown, that.regionFirstDropdown) &&
+                Objects.equals(regionSecondDropdown, that.regionSecondDropdown) &&
+                Objects.equals(fstFirst, that.fstFirst) &&
+                Objects.equals(fstSecond, that.fstSecond) &&
+                Objects.equals(style, that.style) &&
+                Objects.equals(ageField, that.ageField) &&
+                Objects.equals(statusField, that.statusField) &&
+                Objects.equals(yearField, that.yearField) &&
+                Objects.equals(acceptBtn, that.acceptBtn);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(photoPanel, documentsPanel, fName, lName, mName, dOfBirth, trainerFirstField, trainerSecondField, regionFirstDropdown, regionSecondDropdown, fstFirst, fstSecond, style, ageField, statusField, yearField, acceptBtn);
     }
 }
