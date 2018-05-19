@@ -2,34 +2,10 @@ package com.ciklumTask.wrestlerTests;
 
 import com.api.WrestlerAPIController;
 import com.api.WrestlerModel;
-import com.github.javafaker.Faker;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-public class WrestleAPITestCase {
-    private Faker faker = new Faker();
-    private SoftAssert softAssert = new SoftAssert();
-    private WrestlerModel testWrestler;
+public class WrestleAPITestCase extends BaseTest {
     private WrestlerAPIController wrestlerAPIController;
-
-    @BeforeMethod
-    public void beforeMethod() {
-        String dateOfBirth = "25-05-1994";
-        testWrestler = new WrestlerModel(
-                faker.gameOfThrones().character(),
-                String.valueOf(faker.number().numberBetween(2, 20)),
-                String.valueOf(faker.number().numberBetween(2, 20)),
-                String.valueOf(faker.number().numberBetween(2013, 2017)),
-                faker.harryPotter().character(),
-                faker.gameOfThrones().character(),
-                String.valueOf(faker.number().numberBetween(2, 3)),
-                dateOfBirth,
-                String.valueOf(faker.number().numberBetween(2, 3)),
-                String.valueOf(faker.number().numberBetween(2, 3)),
-                String.valueOf(faker.number().numberBetween(2, 7)),
-                String.valueOf(faker.number().numberBetween(2, 7)));
-    }
 
     @Test(description = "CREATE / POST Method")
     public void testCreateNewWrestlerViaAPI() {
