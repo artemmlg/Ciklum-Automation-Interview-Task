@@ -1,6 +1,6 @@
 package com.ciklumTask.wrestlerTests;
 
-import com.github.javafaker.Faker;
+import com.ciklumTask.utils.WrestlerStaleCredentials;
 import com.pages.GridPage;
 import com.pages.LoginPage;
 import com.pages.WrestlerPage;
@@ -24,57 +24,24 @@ public class WrestlerGUITestCase extends BaseTest {
         loginPage.loginToApplication(userLogin, userPassword);
         gridPage = loginPage.clickLoginButton();
         wrestlerPage = gridPage.clickNew();
-        wrestlerPage.addLastName(WrestlerCredentials.LAST_NAME.getValue());
-        wrestlerPage.addFirstName(WrestlerCredentials.FIRST_NAME.getValue());
-        wrestlerPage.addDateOfBirth(WrestlerCredentials.DATE_OF_BIRTH.getValue());
-        wrestlerPage.addMiddleName(WrestlerCredentials.MIDDLE_NAME.getValue());
-        wrestlerPage.selectFromFirstRegion(WrestlerCredentials.FIRST_REGION.getValue());
-        wrestlerPage.selectFromSecondRegion(WrestlerCredentials.SECOND_REGION.getValue());
-        wrestlerPage.selectFromFristFST(WrestlerCredentials.FIRST_FST.getValue());
-        wrestlerPage.selectFromSecondFST(WrestlerCredentials.SECOND_FST.getValue());
-        wrestlerPage.addFirstTrainer(WrestlerCredentials.FIRST_TRAINER.getValue());
-        wrestlerPage.addSecondTrainer(WrestlerCredentials.SECOND_TRAINER.getValue());
-        wrestlerPage.selectFromStyle(WrestlerCredentials.STYLE.getValue());
-        wrestlerPage.selectFromAge(WrestlerCredentials.AGE.getValue());
-        wrestlerPage.selectFromYear(WrestlerCredentials.YEAR.getValue());
-        wrestlerPage.selectFromStatus(WrestlerCredentials.LICENCE_TYPE.getValue());
+        wrestlerPage.addLastName(WrestlerStaleCredentials.LAST_NAME.getValue());
+        wrestlerPage.addFirstName(WrestlerStaleCredentials.FIRST_NAME.getValue());
+        wrestlerPage.addDateOfBirth(WrestlerStaleCredentials.DATE_OF_BIRTH.getValue());
+        wrestlerPage.addMiddleName(WrestlerStaleCredentials.MIDDLE_NAME.getValue());
+        wrestlerPage.selectFromFirstRegion(WrestlerStaleCredentials.FIRST_REGION.getValue());
+        wrestlerPage.selectFromSecondRegion(WrestlerStaleCredentials.SECOND_REGION.getValue());
+        wrestlerPage.selectFromFristFST(WrestlerStaleCredentials.FIRST_FST.getValue());
+        wrestlerPage.selectFromSecondFST(WrestlerStaleCredentials.SECOND_FST.getValue());
+        wrestlerPage.addFirstTrainer(WrestlerStaleCredentials.FIRST_TRAINER.getValue());
+        wrestlerPage.addSecondTrainer(WrestlerStaleCredentials.SECOND_TRAINER.getValue());
+        wrestlerPage.selectFromStyle(WrestlerStaleCredentials.STYLE.getValue());
+        wrestlerPage.selectFromAge(WrestlerStaleCredentials.AGE.getValue());
+        wrestlerPage.selectFromYear(WrestlerStaleCredentials.YEAR.getValue());
+        wrestlerPage.selectFromStatus(WrestlerStaleCredentials.LICENCE_TYPE.getValue());
         wrestlerPage.clickAcceptNewWrestler();
         softAssert.assertTrue(wrestlerPage.getPhotoPanel().getText().contentEquals("Photo"));
         softAssert.assertTrue(wrestlerPage.getDocumentsPanel().getText().contentEquals("Documents"));
         softAssert.assertAll();
-    }
-
-    public enum WrestlerCredentials {
-        LAST_NAME(Faker.instance().harryPotter().character()),
-        FIRST_NAME(Faker.instance().gameOfThrones().character()),
-        DATE_OF_BIRTH(String.valueOf(
-                        Faker.instance().number().numberBetween(10, 31)
-                        + "-" +
-                        Faker.instance().number().numberBetween(10, 12)
-                        + "-" +
-                        Faker.instance().number().numberBetween(1970, 2018))
-        ),
-        MIDDLE_NAME(Faker.instance().harryPotter().character()),
-        FIRST_REGION(String.valueOf(Faker.instance().number().numberBetween(2, 20))),
-        SECOND_REGION(String.valueOf(Faker.instance().number().numberBetween(2, 20))),
-        FIRST_FST(String.valueOf(Faker.instance().number().numberBetween(2, 6))),
-        SECOND_FST(String.valueOf(Faker.instance().number().numberBetween(2, 6))),
-        FIRST_TRAINER(Faker.instance().lordOfTheRings().character()),
-        SECOND_TRAINER(Faker.instance().lordOfTheRings().character()),
-        STYLE(String.valueOf(Faker.instance().number().numberBetween(2, 3))),
-        AGE(String.valueOf(Faker.instance().number().numberBetween(2, 3))),
-        YEAR(String.valueOf(Faker.instance().number().numberBetween(2013, 2017))),
-        LICENCE_TYPE(String.valueOf(Faker.instance().number().numberBetween(2, 3)));
-
-        private String value;
-
-        WrestlerCredentials(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
     }
 
 }
