@@ -5,10 +5,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 public class WrestlerPage extends BasePage {
     public WrestlerPage(WebDriver driver) {
         super(driver);
     }
+
+    @FindBy(xpath = ".//div[text()='Photo']")
+    private WebElement photoPanel;
+
+    @FindBy(xpath = ".//div[text()='Documents']")
+    private WebElement documentsPanel;
 
     //New Wrestler | Input Fields
     @FindBy(xpath = ".//*[@placeholder='First name']")
@@ -30,38 +38,32 @@ public class WrestlerPage extends BasePage {
     private WebElement trainerSecondField;
 
     //New Wrestler | Dropdown's
-    @FindBy(xpath = ".//*[@label='Region' and @value='wr.region1']//select")
-    private WebElement regionFirstDropdown;
+    @FindBy(xpath = ".//*[@label='Region' and @value='wr.region1']//select/option")
+    private List<WebElement> regionFirstDropdown;
 
-    @FindBy(xpath = ".//*[@label='Region' and @value='wr.region2']//select")
-    private WebElement regionSecondDropdown;
+    @FindBy(xpath = ".//*[@label='Region' and @value='wr.region2']//select/option")
+    private List<WebElement> regionSecondDropdown;
 
-    @FindBy(xpath = ".//*[@label='FST' and @value='wr.fst1']//select")
-    private WebElement fstFirst;
+    @FindBy(xpath = ".//*[@label='FST' and @value='wr.fst1']//select/option")
+    private List<WebElement> fstFirst;
 
-    @FindBy(xpath = ".//*[@label='FST' and @value='wr.fst2']//select")
-    private WebElement fstSecond;
+    @FindBy(xpath = ".//*[@label='FST' and @value='wr.fst2']//select/option")
+    private List<WebElement> fstSecond;
 
-    @FindBy(xpath = ".//*[@label='Style']//select")
-    private WebElement style;
+    @FindBy(xpath = ".//*[@label='Style']//select/option")
+    private List<WebElement> style;
 
-    @FindBy(xpath = ".//*[@label='Age']//select")
-    private WebElement ageField;
+    @FindBy(xpath = ".//*[@label='Age']//select/option")
+    private List<WebElement> ageField;
+
+    @FindBy(xpath = ".//*[@label='Status']//select/option")
+    private List<WebElement> statusField;
 
     @FindBy(xpath = ".//*[@label='Year']//select")
     private WebElement yearField;
 
-    @FindBy(xpath = ".//*[@label='Status']//select")
-    private WebElement statusField;
-
     @FindBy(xpath = ".//div[@class='buttons']//div[1]/button")
     private WebElement acceptBtn;
-
-    @FindBy(xpath = ".//div[text()='Photo']")
-    private WebElement photoPanel;
-
-    @FindBy(xpath = ".//div[text()='Documents']")
-    private WebElement documentsPanel;
 
     public void addFirstName(String fName) {
         clearAndType(this.fName, fName);
@@ -87,36 +89,44 @@ public class WrestlerPage extends BasePage {
         clearAndType(trainerSecondField, secondTrainer);
     }
 
-    public void selectFromFristRegion(String firstRegion) {
-        selectFromDropDownByVisibleText(regionFirstDropdown, firstRegion);
+    public void selectFromFirstRegion(String firstRegion) {
+        selectFromDropDownByIndex(regionFirstDropdown, firstRegion);
     }
 
     public void selectFromSecondRegion(String secondRegion) {
-        selectFromDropDownByVisibleText(regionSecondDropdown, secondRegion);
+        selectFromDropDownByIndex(regionSecondDropdown, secondRegion);
     }
 
     public void selectFromFristFST(String firstFST) {
-        selectFromDropDownByVisibleText(fstFirst, firstFST);
+        selectFromDropDownByIndex(fstFirst, firstFST);
     }
 
     public void selectFromSecondFST(String secondFST) {
-        selectFromDropDownByVisibleText(fstSecond, secondFST);
+        selectFromDropDownByIndex(fstSecond, secondFST);
     }
 
     public void selectFromStyle(String style) {
-        selectFromDropDownByVisibleText(this.style, style);
+        selectFromDropDownByIndex(this.style, style);
+    }
+
+    public void selectFromStatus(String status) {
+        selectFromDropDownByIndex(statusField, status);
+    }
+
+    public void selectFromAge(String age) {
+        selectFromDropDownByIndex(ageField, age);
     }
 
     public void selectFromYear(String year) {
         selectFromDropDownByVisibleText(yearField, year);
     }
 
-    public void selectFromStatus(String status) {
-        selectFromDropDownByVisibleText(statusField, status);
-    }
-
-    public void selectFromAge(String age) {
-        selectFromDropDownByVisibleText(ageField, age);
+    private void selectFromDropDownByIndex(List<WebElement> webElements, String selectElementByIndex) {
+        LOG.info("Select from DropDown Element: "
+                + webElements.get(Integer.parseInt(selectElementByIndex)).getTagName()
+                + ", by index: " + selectElementByIndex);
+        waitForElementDisplayed(webElements.get(Integer.parseInt(selectElementByIndex)));
+        webElements.get(Integer.parseInt(selectElementByIndex)).click();
     }
 
     private void selectFromDropDownByVisibleText(WebElement webElement, String selectByText) {
@@ -128,62 +138,6 @@ public class WrestlerPage extends BasePage {
 
     public void clickAcceptNewWrestler() {
         clickBtn(acceptBtn);
-    }
-
-    public WebElement getfName() {
-        return fName;
-    }
-
-    public WebElement getlName() {
-        return lName;
-    }
-
-    public WebElement getmName() {
-        return mName;
-    }
-
-    public WebElement getdOfBirth() {
-        return dOfBirth;
-    }
-
-    public WebElement getTrainerFirstField() {
-        return trainerFirstField;
-    }
-
-    public WebElement getTrainerSecondField() {
-        return trainerSecondField;
-    }
-
-    public WebElement getRegionFirstDropdown() {
-        return regionFirstDropdown;
-    }
-
-    public WebElement getRegionSecondDropdown() {
-        return regionSecondDropdown;
-    }
-
-    public WebElement getFstFirst() {
-        return fstFirst;
-    }
-
-    public WebElement getFstSecond() {
-        return fstSecond;
-    }
-
-    public WebElement getStyle() {
-        return style;
-    }
-
-    public WebElement getAgeField() {
-        return ageField;
-    }
-
-    public WebElement getYearField() {
-        return yearField;
-    }
-
-    public WebElement getStatusField() {
-        return statusField;
     }
 
     public WebElement getPhotoPanel() {
