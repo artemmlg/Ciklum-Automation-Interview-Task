@@ -1,6 +1,7 @@
 package com.ciklumTask.wrestlerTests;
 
 import com.config.AppProperties;
+import com.github.javafaker.Faker;
 import com.pages.BasePage;
 import com.utils.webDriver.WebDriverFactory;
 import org.aeonbits.owner.ConfigFactory;
@@ -20,7 +21,8 @@ public abstract class BaseTest {
     protected Logger LOG = Logger.getLogger(BaseTest.class);
 
     protected WebDriver driver;
-    protected SoftAssert softAssert;
+    protected SoftAssert softAssert = new SoftAssert();
+    protected Faker faker = new Faker();
     private BasePage basePage;
 
     @BeforeClass
@@ -28,7 +30,6 @@ public abstract class BaseTest {
         LOG.info("Driver initialization");
         driver = WebDriverFactory.setWebDriver();
         basePage = new BasePage(driver);
-        softAssert = new SoftAssert();
     }
 
     @BeforeMethod

@@ -14,9 +14,9 @@ public class GridPage extends BasePage {
     @FindBy(xpath = ".//*[@ng-click='newWrestler()']")
     private WebElement addNewBtn;
 
-    public WrestlerTabPage clickNew(){
+    public WrestlerPage clickNew(){
         waitForElementDisplayed(addNewBtn);
         addNewBtn.click();
-        return new WrestlerTabPage(driver);
+        return new WrestlerPage(driver);
     }
 }

@@ -5,8 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-public class WrestlerTabPage extends BasePage {
-    public WrestlerTabPage(WebDriver driver) {
+public class WrestlerPage extends BasePage {
+    public WrestlerPage(WebDriver driver) {
         super(driver);
     }
 
@@ -54,8 +54,14 @@ public class WrestlerTabPage extends BasePage {
     @FindBy(xpath = ".//*[@label='Status']//select")
     private WebElement statusField;
 
-    @FindBy(xpath = ".//button[@class='btn btn-lg btn-success']")
+    @FindBy(xpath = ".//div[@class='buttons']//div[1]/button")
     private WebElement acceptBtn;
+
+    @FindBy(xpath = ".//div[text()='Photo']")
+    private WebElement photoPanel;
+
+    @FindBy(xpath = ".//div[text()='Documents']")
+    private WebElement documentsPanel;
 
     public void addFirstName(String fName) {
         clearAndType(this.fName, fName);
@@ -114,7 +120,7 @@ public class WrestlerTabPage extends BasePage {
     }
 
     private void selectFromDropDownByVisibleText(WebElement webElement, String selectByText) {
-        LOG.info("Select from DropDown Element: " + webElement.getTagName() + ", with text: " + webElement.getText());
+        LOG.info("Select from DropDown Element: " + webElement.getTagName() + ", by text: " + selectByText);
         Select select = new Select(webElement);
         waitForElementDisplayed(webElement);
         select.selectByVisibleText(selectByText);
@@ -122,5 +128,71 @@ public class WrestlerTabPage extends BasePage {
 
     public void clickAcceptNewWrestler() {
         clickBtn(acceptBtn);
+    }
+
+    public WebElement getfName() {
+        return fName;
+    }
+
+    public WebElement getlName() {
+        return lName;
+    }
+
+    public WebElement getmName() {
+        return mName;
+    }
+
+    public WebElement getdOfBirth() {
+        return dOfBirth;
+    }
+
+    public WebElement getTrainerFirstField() {
+        return trainerFirstField;
+    }
+
+    public WebElement getTrainerSecondField() {
+        return trainerSecondField;
+    }
+
+    public WebElement getRegionFirstDropdown() {
+        return regionFirstDropdown;
+    }
+
+    public WebElement getRegionSecondDropdown() {
+        return regionSecondDropdown;
+    }
+
+    public WebElement getFstFirst() {
+        return fstFirst;
+    }
+
+    public WebElement getFstSecond() {
+        return fstSecond;
+    }
+
+    public WebElement getStyle() {
+        return style;
+    }
+
+    public WebElement getAgeField() {
+        return ageField;
+    }
+
+    public WebElement getYearField() {
+        return yearField;
+    }
+
+    public WebElement getStatusField() {
+        return statusField;
+    }
+
+    public WebElement getPhotoPanel() {
+        waitForElementDisplayed(photoPanel);
+        return photoPanel;
+    }
+
+    public WebElement getDocumentsPanel() {
+        waitForElementDisplayed(documentsPanel);
+        return documentsPanel;
     }
 }
