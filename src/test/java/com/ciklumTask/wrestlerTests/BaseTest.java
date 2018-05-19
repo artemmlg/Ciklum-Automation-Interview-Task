@@ -1,7 +1,7 @@
 package com.ciklumTask.wrestlerTests;
 
 import com.config.AppProperties;
-import com.core.BasePage;
+import com.pages.BasePage;
 import com.utils.webDriver.WebDriverFactory;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;

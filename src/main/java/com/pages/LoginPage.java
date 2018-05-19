@@ -1,6 +1,5 @@
 package com.pages;
 
-import com.core.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -38,10 +37,10 @@ public class LoginPage extends BasePage{
         clearAndTypePasswordField(password);
     }
 
-    public WrestlerPage clickLoginButton(){
+    public GridPage clickLoginButton(){
         waitForElementDisplayed(loginBtn);
         clickBtn(loginBtn);
-        return new WrestlerPage(driver);
+        return new GridPage(driver);
     }
 
     public WebElement getPasswordField() {

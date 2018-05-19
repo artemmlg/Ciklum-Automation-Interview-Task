@@ -1,15 +1,12 @@
 package com.pages;
 
-import com.core.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-public class NewWrestlerTabPage extends BasePage {
-//    Select selector;
-
-    public NewWrestlerTabPage(WebDriver driver) {
+public class WrestlerTabPage extends BasePage {
+    public WrestlerTabPage(WebDriver driver) {
         super(driver);
     }
 
@@ -60,39 +57,70 @@ public class NewWrestlerTabPage extends BasePage {
     @FindBy(xpath = ".//button[@class='btn btn-lg btn-success']")
     private WebElement acceptBtn;
 
-    public void fillNewUserForm(
-            CharSequence firstName, CharSequence lastName, CharSequence middleName,
-            CharSequence dateOfBirth, CharSequence firstRegion, CharSequence secondRegion,
-            CharSequence fst1, CharSequence fst2,
-            CharSequence firstTrainer, CharSequence secondTrainer,
-            CharSequence playerStyle, CharSequence age,
-            CharSequence year, CharSequence status) {
-        waitForElementDisplayed(fName);
-        clearAndType(fName, firstName);
-        clearAndType(lName, lastName);
-        clearAndType(mName, middleName);
-        clearAndType(dOfBirth, dateOfBirth);
-        selectFromDropDownByVisibleText(regionFirstDropdown, (String) firstRegion);
-        selectFromDropDownByVisibleText(regionSecondDropdown, (String) secondRegion);
-        selectFromDropDownByVisibleText(regionSecondDropdown, (String) secondRegion);
-        selectFromDropDownByVisibleText(fstFirst, (String) fst1);
-        selectFromDropDownByVisibleText(fstSecond, (String) fst2);
-        clearAndType(trainerFirstField, firstTrainer);
-        clearAndType(trainerSecondField, secondTrainer);
-        selectFromDropDownByVisibleText(style, (String) playerStyle);
-        selectFromDropDownByVisibleText(yearField, (String) year);
-        selectFromDropDownByVisibleText(statusField, (String) status);
-        selectFromDropDownByVisibleText(ageField, (String) age);
+    public void addFirstName(String fName) {
+        clearAndType(this.fName, fName);
     }
 
-    public void acceptForm(){
-        clickBtn(acceptBtn);
+    public void addMiddleName(String mName) {
+        clearAndType(this.mName, mName);
+    }
+
+    public void addLastName(String lName) {
+        clearAndType(this.lName, lName);
+    }
+
+    public void addDateOfBirth(String dOfBirth) {
+        clearAndType(this.dOfBirth, dOfBirth);
+    }
+
+    public void addFirstTrainer(String firstTrainer) {
+        clearAndType(trainerFirstField, firstTrainer);
+    }
+
+    public void addSecondTrainer(String secondTrainer) {
+        clearAndType(trainerSecondField, secondTrainer);
+    }
+
+    public void selectFromFristRegion(String firstRegion) {
+        selectFromDropDownByVisibleText(regionFirstDropdown, firstRegion);
+    }
+
+    public void selectFromSecondRegion(String secondRegion) {
+        selectFromDropDownByVisibleText(regionSecondDropdown, secondRegion);
+    }
+
+    public void selectFromFristFST(String firstFST) {
+        selectFromDropDownByVisibleText(fstFirst, firstFST);
+    }
+
+    public void selectFromSecondFST(String secondFST) {
+        selectFromDropDownByVisibleText(fstSecond, secondFST);
+    }
+
+    public void selectFromStyle(String style) {
+        selectFromDropDownByVisibleText(this.style, style);
+    }
+
+    public void selectFromYear(String year) {
+        selectFromDropDownByVisibleText(yearField, year);
+    }
+
+    public void selectFromStatus(String status) {
+        selectFromDropDownByVisibleText(statusField, status);
+    }
+
+    public void selectFromAge(String age) {
+        selectFromDropDownByVisibleText(ageField, age);
     }
 
     private void selectFromDropDownByVisibleText(WebElement webElement, String selectByText) {
+        LOG.info("Select from DropDown Element: " + webElement.getTagName() + ", with text: " + webElement.getText());
         Select select = new Select(webElement);
+        waitForElementDisplayed(webElement);
         select.selectByVisibleText(selectByText);
     }
 
-
+    public void clickAcceptNewWrestler() {
+        clickBtn(acceptBtn);
+    }
 }

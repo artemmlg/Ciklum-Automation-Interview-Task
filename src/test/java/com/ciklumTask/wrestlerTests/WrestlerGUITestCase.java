@@ -1,29 +1,29 @@
 package com.ciklumTask.wrestlerTests;
 
 import com.pages.LoginPage;
-import com.pages.NewWrestlerTabPage;
-import com.pages.WrestlerPage;
+import com.pages.WrestlerTabPage;
+import com.pages.GridPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class WrestlerGUITestCase extends BaseTest {
-    private WrestlerPage wrestlerPage;
-    private NewWrestlerTabPage newWrestlerTabPage;
+    private GridPage gridPage;
+    private WrestlerTabPage wrestlerTabPage;
     private LoginPage loginPage;
 
     @BeforeMethod
     public void beforeMethod() {
-        wrestlerPage = new WrestlerPage(driver);
+        gridPage = new GridPage(driver);
         loginPage = new LoginPage(driver);
     }
 
     @Test
     public void testCreateNewWrestler() {
-        wrestlerPage.openBaseURL();
+        gridPage.openBaseURL();
         loginPage.loginToApplication(userLogin, userPassword);
-        wrestlerPage = loginPage.clickLoginButton();
-        newWrestlerTabPage = wrestlerPage.clickNew();
-        newWrestlerTabPage.fillNewUserForm(
+        gridPage = loginPage.clickLoginButton();
+        wrestlerTabPage = gridPage.clickNew();
+        wrestlerTabPage.fillNewUserForm(
                 "Arnold",
                 "Swarz",
                 "Tor",
@@ -38,7 +38,7 @@ public class WrestlerGUITestCase extends BaseTest {
                 "Junior",
                 "2013",
                 "Produced");
-        newWrestlerTabPage.acceptForm();
+        wrestlerTabPage.clickAcceptNewWrestler();
         softAssert.assertAll();
     }
 

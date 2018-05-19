@@ -1,4 +1,4 @@
-package com.core;
+package com.pages;
 
 import com.config.AppProperties;
 import com.config.WebDriverProperties;
@@ -28,27 +28,26 @@ public class BasePage {
     }
 
     public void openBaseURL() {
-        LOG.info("Navigate to " + appProperties.url());
+        LOG.info("Navigate to " + applicationURL);
         driver.get(applicationURL);
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
-    public void clearAndType(WebElement webElement, CharSequence value) {
+    public void clearAndType(WebElement webElement, String value) {
+        LOG.info("Type value: " + value + ", into field: " + webElement.getTagName());
+        waitForElementDisplayed(webElement);
         webElement.clear();
         webElement.sendKeys(value);
     }
 
     protected void submitBtn(WebElement webElement){
-//        LOG.info("Submit Element: " + webElement.getTagName() + ", with text: " + webElement.getText());
+        LOG.info("Submit Element: " + webElement.getTagName() + ", with text: " + webElement.getText());
+        waitForElementDisplayed(webElement);
         webElement.submit();
     }
 
     protected void clickBtn(WebElement webElement){
-//        LOG.info("Submit Element: " + webElement.getTagName() + ", with text: " + webElement.getText());
+        LOG.info("Click on Element: " + webElement.getTagName() + ", with text: " + webElement.getText());
+        waitForElementDisplayed(webElement);
         webElement.click();
     }
 
