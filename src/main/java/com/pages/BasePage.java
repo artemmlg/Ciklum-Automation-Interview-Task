@@ -4,10 +4,13 @@ import com.config.AppProperties;
 import com.config.WebDriverProperties;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public class BasePage {
     protected Logger LOG = Logger.getLogger(BasePage.class);
@@ -20,11 +23,6 @@ public class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-    }
-
-    public String getPageTitle() {
-        LOG.info("Verify web page title");
-        return driver.getTitle();
     }
 
     public void openBaseURL() {
@@ -48,5 +46,19 @@ public class BasePage {
     public void waitForElementDisplayed(final WebElement webElement) {
         WebDriverWait wait = new WebDriverWait(driver, EXPLICIT_WAIT);
         wait.until(result -> webElement.isDisplayed());
+    }
+
+    public void waitForElementNotVisible(final WebElement webElement) {
+        final Wait<WebDriver> wait = new FluentWait<>(driver)
+                .withMessage("Element " + webElement + " is still visible")
+                .withTimeout(10, TimeUnit.SECONDS)
+                .pollingEvery(1, TimeUnit.SECONDS);
+        wait.until(result -> {
+            try {
+                return !webElement.isDisplayed();
+            } catch (NoSuchElementException | StaleElementReferenceException var3) {
+                return Boolean.TRUE;
+            }
+        });
     }
 }

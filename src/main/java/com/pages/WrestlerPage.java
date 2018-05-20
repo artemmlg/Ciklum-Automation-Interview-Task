@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
-import java.util.Objects;
 
 public class WrestlerPage extends BasePage {
     public WrestlerPage(WebDriver driver) {
@@ -65,6 +64,12 @@ public class WrestlerPage extends BasePage {
 
     @FindBy(xpath = ".//div[@class='buttons']//div[1]/button")
     private WebElement acceptBtn;
+
+    @FindBy(xpath = ".//ul[@class='nav nav-tabs']/li[2]/a")
+    private WebElement wrestlerTab;
+
+    @FindBy(xpath = ".//ul[@class='nav nav-tabs']/li[2]/a//div[@class='spinner-loader ng-hide']")
+    private WebElement wrestlerTabSpinnerLoader;
 
     public void addFirstName(String fName) {
         clearAndType(this.fName, fName);
@@ -207,33 +212,8 @@ public class WrestlerPage extends BasePage {
         return yearField;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        WrestlerPage that = (WrestlerPage) o;
-        return Objects.equals(photoPanel, that.photoPanel) &&
-                Objects.equals(documentsPanel, that.documentsPanel) &&
-                Objects.equals(fName, that.fName) &&
-                Objects.equals(lName, that.lName) &&
-                Objects.equals(mName, that.mName) &&
-                Objects.equals(dOfBirth, that.dOfBirth) &&
-                Objects.equals(trainerFirstField, that.trainerFirstField) &&
-                Objects.equals(trainerSecondField, that.trainerSecondField) &&
-                Objects.equals(regionFirstDropdown, that.regionFirstDropdown) &&
-                Objects.equals(regionSecondDropdown, that.regionSecondDropdown) &&
-                Objects.equals(fstFirst, that.fstFirst) &&
-                Objects.equals(fstSecond, that.fstSecond) &&
-                Objects.equals(style, that.style) &&
-                Objects.equals(ageField, that.ageField) &&
-                Objects.equals(statusField, that.statusField) &&
-                Objects.equals(yearField, that.yearField) &&
-                Objects.equals(acceptBtn, that.acceptBtn);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(photoPanel, documentsPanel, fName, lName, mName, dOfBirth, trainerFirstField, trainerSecondField, regionFirstDropdown, regionSecondDropdown, fstFirst, fstSecond, style, ageField, statusField, yearField, acceptBtn);
+    public WebElement getWrestlerTab() {
+        waitForElementNotVisible(wrestlerTabSpinnerLoader);
+        return wrestlerTab;
     }
 }
