@@ -58,6 +58,8 @@ public class WrestlerGUITestCase extends BaseTest {
         wrestlerPage.selectFromYear(WrestlerStaleCredentials.YEAR.getValue());
         wrestlerPage.selectFromStatus(WrestlerStaleCredentials.LICENCE_TYPE.getValue());
         wrestlerPage.clickAcceptNewWrestler();
+        softAssert.assertTrue(wrestlerPage.getWrestlerTab().getText().contains(WrestlerStaleCredentials.LAST_NAME.getValue()),
+                "Wrestler LAST_NAME: " + WrestlerStaleCredentials.LAST_NAME.getValue() + ", wasn't updated on tab!");
         softAssert.assertTrue(wrestlerPage.getPhotoPanel().getText().contentEquals("Photo"));
         softAssert.assertTrue(wrestlerPage.getDocumentsPanel().getText().contentEquals("Documents"));
         softAssert.assertAll();
