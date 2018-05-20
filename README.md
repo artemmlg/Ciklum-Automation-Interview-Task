@@ -8,7 +8,15 @@ To run this project you need to have Java and Apache Maven installed on your com
 
 ## How to run tests:
 - Clone/Download project from GitHub: [Project Link](https://github.com/artemmlg/Ciklum-Automation-Interview-Task)
-- To RUN all tests, execute following from CMD (console) in project root:
+- To run FULL suit (tests), execute following from CMD (console) in project root:
 ```
-mvn clean test :shipit:
+mvn clean test
+```
+- To run only API :running: suit (tests), execute following from CMD (console) in project root:
+```
+mvn test -Dsurefire.suiteXmlFiles=src/test/resources/api_suite.xml
+```
+- To run only GUI :walking: suit (tests), execute following from CMD (console) in project root:
+```
+mvn test -Dsurefire.suiteXmlFiles=src/test/resources/gui_suite.xml
 ```
