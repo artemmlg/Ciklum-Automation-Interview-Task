@@ -44,4 +44,13 @@ public class GridPage extends BasePage {
         baseClick(element);
         return new WrestlerPage(driver);
     }
+
+    public boolean isElementPresent(By locatorKey) {
+        try {
+            driver.findElement(locatorKey);
+            return true;
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
+    }
 }

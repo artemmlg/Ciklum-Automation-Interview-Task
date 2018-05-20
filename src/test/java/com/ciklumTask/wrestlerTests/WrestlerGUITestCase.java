@@ -112,7 +112,7 @@ public class WrestlerGUITestCase extends BaseTest {
     }
 
     @Test(description = "DELETE")
-    public void testDeleteWrestler(){
+    public void testDeleteWrestler() {
         WrestlerAPIController wrestlerAPIController = new WrestlerAPIController(testWrestler);
         String getIdFromAPI = wrestlerAPIController.createNewWrestler().getId();
         WrestlerModel response = wrestlerAPIController.readWrestler(getIdFromAPI);
@@ -127,9 +127,7 @@ public class WrestlerGUITestCase extends BaseTest {
 
         gridPage.searchByValue(response.getLname());
         gridPage.clickSearchButton();
-
-        gridPage.clickWrestlerByIdFromSearchPage(getIdFromAPI);
-
+        softAssert.assertFalse(gridPage.isElementPresent(gridPage.findWrestlerById(getIdFromAPI)));
         softAssert.assertAll();
     }
 
