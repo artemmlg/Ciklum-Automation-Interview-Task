@@ -21,7 +21,7 @@ public class GridPage extends BasePage {
     @FindBy(xpath = ".//button[@ng-click='searchWrestler(searchFor)']")
     private WebElement searchButton;
 
-    private By findWrestlerById(String wrestlerId) {
+    public By findWrestlerById(String wrestlerId) {
         return By.xpath(".//td[@class='ng-binding' and text()='" + wrestlerId + "']");
     }
 

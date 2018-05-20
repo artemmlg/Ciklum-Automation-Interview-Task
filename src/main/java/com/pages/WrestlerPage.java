@@ -65,11 +65,18 @@ public class WrestlerPage extends BasePage {
     @FindBy(xpath = ".//div[@class='buttons']//div[1]/button")
     private WebElement acceptBtn;
 
+    @FindBy(xpath = ".//div[@class='buttons']//div[2]/button")
+    private WebElement declineBtn;
+
     @FindBy(xpath = ".//ul[@class='nav nav-tabs']/li[2]/a")
     private WebElement wrestlerTab;
 
     @FindBy(xpath = ".//ul[@class='nav nav-tabs']/li[2]/a//div[@class='spinner-loader ng-hide']")
     private WebElement wrestlerTabSpinnerLoader;
+
+    //Fake AlertBox
+    @FindBy(xpath = ".//button[@class='btn btn-success']")
+    private WebElement acceptDeleteBtn;
 
     public void addFirstName(String fName) {
         clearAndType(this.fName, fName);
@@ -146,6 +153,14 @@ public class WrestlerPage extends BasePage {
         baseClick(acceptBtn);
     }
 
+    public void clickDeleteWrestler(){
+        baseClick(declineBtn);
+    }
+
+    public void clickConfirmDeleteFromFakeAlert(){
+        baseClick(acceptDeleteBtn);
+    }
+
     public WebElement getPhotoPanel() {
         waitForElementDisplayed(photoPanel);
         return photoPanel;
@@ -170,14 +185,6 @@ public class WrestlerPage extends BasePage {
 
     public WebElement getdOfBirth() {
         return dOfBirth;
-    }
-
-    public WebElement getTrainerFirstField() {
-        return trainerFirstField;
-    }
-
-    public WebElement getTrainerSecondField() {
-        return trainerSecondField;
     }
 
     public List<WebElement> getRegionFirstDropdown() {

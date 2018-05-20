@@ -43,6 +43,11 @@ public class BasePage {
         webElement.click();
     }
 
+    public void refreshPage(){
+        LOG.info("Refreshing the page");
+        driver.navigate().refresh();
+    }
+
     public void waitForElementDisplayed(final WebElement webElement) {
         WebDriverWait wait = new WebDriverWait(driver, EXPLICIT_WAIT);
         wait.until(result -> webElement.isDisplayed());

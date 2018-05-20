@@ -111,4 +111,26 @@ public class WrestlerGUITestCase extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Test(description = "DELETE")
+    public void testDeleteWrestler(){
+        WrestlerAPIController wrestlerAPIController = new WrestlerAPIController(testWrestler);
+        String getIdFromAPI = wrestlerAPIController.createNewWrestler().getId();
+        WrestlerModel response = wrestlerAPIController.readWrestler(getIdFromAPI);
+
+        loginPage.loginToApplication(userLogin, userPassword);
+        gridPage = loginPage.clickLoginButton();
+        gridPage.searchByValue(response.getLname());
+        gridPage.clickSearchButton();
+        wrestlerPage = gridPage.clickWrestlerByIdFromSearchPage(getIdFromAPI);
+        wrestlerPage.clickDeleteWrestler();
+        wrestlerPage.clickConfirmDeleteFromFakeAlert();
+
+        gridPage.searchByValue(response.getLname());
+        gridPage.clickSearchButton();
+
+        gridPage.clickWrestlerByIdFromSearchPage(getIdFromAPI);
+
+        softAssert.assertAll();
+    }
+
 }
