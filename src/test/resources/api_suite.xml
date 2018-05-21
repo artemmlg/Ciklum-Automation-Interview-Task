@@ -3,7 +3,7 @@
 <suite name="API_Suite">
     <test verbose="3" name="votingWithPipingTakenOnNextPage">
         <classes>
-            <class name="com.ciklumTask.wrestlerTests.WrestleAPITestCase"/>
+            <class name="com.ciklumTask.wrestlerTests.WrestleAPITestSuit"/>
         </classes>
     </test>
 </suite>

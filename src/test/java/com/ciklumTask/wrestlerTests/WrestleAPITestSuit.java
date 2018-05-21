@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class WrestleAPITestCase {
+public class WrestleAPITestSuit {
     private WrestlerFlexibleCredentials flexibleCredentials = new WrestlerFlexibleCredentials();
     private SoftAssert softAssert = new SoftAssert();
     private WrestlerModel testWrestler;
