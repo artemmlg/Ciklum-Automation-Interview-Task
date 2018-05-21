@@ -80,8 +80,8 @@ public class WrestleAPITestCase {
         softAssert.assertAll();
     }
 
-    @Test(description ="DELETE / DELETE Method")
-    public void testDeleteWrestlerViaAPI(){
+    @Test(description = "DELETE / DELETE Method")
+    public void testDeleteWrestlerViaAPI() {
         wrestlerAPIController = new WrestlerAPIController(testWrestler);
         String getIdFromCreatedWrestler = wrestlerAPIController.createNewWrestler().getId();
         boolean isDeleted = wrestlerAPIController.deleteWrestler(getIdFromCreatedWrestler).getResult();

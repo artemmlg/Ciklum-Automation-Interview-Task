@@ -153,11 +153,11 @@ public class WrestlerPage extends BasePage {
         baseClick(acceptBtn);
     }
 
-    public void clickDeleteWrestler(){
+    public void clickDeleteWrestler() {
         baseClick(declineBtn);
     }
 
-    public void clickConfirmDeleteFromFakeAlert(){
+    public void clickConfirmDeleteFromFakeAlert() {
         baseClick(acceptDeleteBtn);
     }
 

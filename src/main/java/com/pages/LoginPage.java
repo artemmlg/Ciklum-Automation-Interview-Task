@@ -19,14 +19,14 @@ public class LoginPage extends BasePage {
     private WebElement loginBtn;
 
     private void clearAndTypeLoginField(String loginValue) {
-//        LOG.info("Clear and Type Login value: " + loginValue);
+        LOG.info("Clear and Type Login value: " + loginValue);
         waitForElementDisplayed(loginField);
         loginField.clear();
         loginField.sendKeys(loginValue);
     }
 
     private void clearAndTypePasswordField(String passwordValue) {
-//        LOG.info("Clear and Type Password value: " + passwordValue);
+        LOG.info("Clear and Type Password value: " + passwordValue);
         waitForElementDisplayed(passwordField);
         passwordField.clear();
         passwordField.sendKeys(passwordValue);
@@ -42,9 +42,4 @@ public class LoginPage extends BasePage {
         baseClick(loginBtn);
         return new GridPage(driver);
     }
-
-    public WebElement getPasswordField() {
-        return passwordField;
-    }
-
 }

@@ -33,7 +33,7 @@ public abstract class BaseTest {
     }
 
     @BeforeMethod
-    public void beforeMethod(Method method){
+    public void beforeMethod(Method method) {
         String testName = method.getName();
         Thread.currentThread().setName(testName);
         LOG.info("\nTest Method: " + testName + " <==> From Class: " + this.getClass().getSimpleName() + " is launched!");
@@ -41,9 +41,8 @@ public abstract class BaseTest {
 
     @AfterClass(alwaysRun = true)
     public void afterClass() {
-        if (driver != null){
+        if (driver != null) {
             driver.quit();
         }
     }
-
 }
