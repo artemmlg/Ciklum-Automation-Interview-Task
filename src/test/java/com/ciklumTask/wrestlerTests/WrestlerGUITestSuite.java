@@ -10,7 +10,7 @@ import com.pages.WrestlerPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class WrestlerGUITestSuit extends BaseTest {
+public class WrestlerGUITestSuite extends BaseTest {
     private GridPage gridPage;
     private WrestlerPage wrestlerPage;
     private LoginPage loginPage;
