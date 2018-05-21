@@ -19,9 +19,8 @@ public class WrestlerGUITestCase extends BaseTest {
 
     @BeforeMethod
     public void beforeMethod() {
-        gridPage = new GridPage(driver);
         loginPage = new LoginPage(driver);
-        gridPage.openBaseURL();
+        loginPage.openBaseURL();
         //same random initializations, due to API scenario without inheritance
         testWrestler = new WrestlerModel(
                 flexibleCredentials.getFirstName(),
