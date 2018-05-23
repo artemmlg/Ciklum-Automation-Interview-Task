@@ -44,17 +44,9 @@ public class WrestleAPITestSuite {
         wrestlerAPIController = new WrestlerAPIController(testWrestler);
         String getIdFromCreatedWrestler = wrestlerAPIController.createNewWrestler().getId();
         WrestlerModel response = wrestlerAPIController.readWrestler(getIdFromCreatedWrestler);
-        softAssert.assertEquals(testWrestler.getFname(), response.getFname());
-        softAssert.assertEquals(testWrestler.getLname(), response.getLname());
-        softAssert.assertEquals(testWrestler.getMname(), response.getMname());
-        softAssert.assertEquals(testWrestler.getDob(), response.getDob());
-        softAssert.assertEquals(testWrestler.getStyle(), response.getStyle());
-        softAssert.assertEquals(testWrestler.getRegion1(), response.getRegion1());
-        softAssert.assertEquals(testWrestler.getRegion2(), response.getRegion2());
-        softAssert.assertEquals(testWrestler.getFst1(), response.getFst1());
-        softAssert.assertEquals(testWrestler.getFst2(), response.getFst2());
-        softAssert.assertEquals(testWrestler.getExpires(), response.getExpires());
-        softAssert.assertEquals(testWrestler.getLictype(), response.getLictype());
+        for (int i = 0; i < testWrestler.modelList.size(); i++) {
+            softAssert.assertEquals(testWrestler.modelList.get(i), response.modelList.get(i));
+        }
         softAssert.assertAll();
     }
 

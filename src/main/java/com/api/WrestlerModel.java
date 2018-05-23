@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.annotation.Generated;
+import java.util.Arrays;
+import java.util.List;
 
 @Generated("com.robohorse.robopojogenerator")
 @JsonIgnoreProperties(value = {"new", "trainer1", "trainer2", "trainerid1", "trainerid2", "attaches", "photo"})
@@ -91,6 +93,8 @@ public class WrestlerModel {
         this.trainerid1 = trainerid1;
         this.trainerid2 = trainerid2;
     }
+
+    public List<String> modelList = Arrays.asList(fname, lname, mname, dob, style, region1, region2, fst1, fst2, expires, lictype);
 
     public String getIdWrestler() {
         return idWrestler;
