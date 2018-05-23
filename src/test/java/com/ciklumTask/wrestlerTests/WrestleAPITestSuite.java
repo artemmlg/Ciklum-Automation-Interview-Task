@@ -8,11 +8,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class WrestleAPITestSuite {
     private WrestlerFlexibleCredentials flexibleCredentials = new WrestlerFlexibleCredentials();
     private SoftAssert softAssert = new SoftAssert();
     private WrestlerModel testWrestler;
     private WrestlerAPIController wrestlerAPIController;
+    private List<String> wrestlerList;
 
     @BeforeMethod
     public void beforeMethod() {
@@ -29,6 +33,10 @@ public class WrestleAPITestSuite {
                 flexibleCredentials.getStyle(),
                 flexibleCredentials.getFirstFST(),
                 flexibleCredentials.getSecondFST());
+
+        wrestlerList = Arrays.asList(testWrestler.getFname(), testWrestler.getLname(), testWrestler.getMname(),
+                testWrestler.getDob(), testWrestler.getStyle(), testWrestler.getRegion1(), testWrestler.getRegion2(),
+                testWrestler.getFst1(), testWrestler.getFst2(), testWrestler.getExpires(), testWrestler.getLictype());
     }
 
     @Test(description = "CREATE / POST Method")
@@ -44,17 +52,12 @@ public class WrestleAPITestSuite {
         wrestlerAPIController = new WrestlerAPIController(testWrestler);
         String getIdFromCreatedWrestler = wrestlerAPIController.createNewWrestler().getId();
         WrestlerModel response = wrestlerAPIController.readWrestler(getIdFromCreatedWrestler);
-        softAssert.assertEquals(testWrestler.getFname(), response.getFname());
-        softAssert.assertEquals(testWrestler.getLname(), response.getLname());
-        softAssert.assertEquals(testWrestler.getMname(), response.getMname());
-        softAssert.assertEquals(testWrestler.getDob(), response.getDob());
-        softAssert.assertEquals(testWrestler.getStyle(), response.getStyle());
-        softAssert.assertEquals(testWrestler.getRegion1(), response.getRegion1());
-        softAssert.assertEquals(testWrestler.getRegion2(), response.getRegion2());
-        softAssert.assertEquals(testWrestler.getFst1(), response.getFst1());
-        softAssert.assertEquals(testWrestler.getFst2(), response.getFst2());
-        softAssert.assertEquals(testWrestler.getExpires(), response.getExpires());
-        softAssert.assertEquals(testWrestler.getLictype(), response.getLictype());
+        List<String> wrestlerListFromApi = Arrays.asList(response.getFname(), response.getLname(), response.getMname(),
+                response.getDob(), response.getStyle(), response.getRegion1(), response.getRegion2(),
+                response.getFst1(), response.getFst2(), response.getExpires(), response.getLictype());
+        for (int i = 0; i < wrestlerListFromApi.size(); i++) {
+            softAssert.assertEquals(wrestlerList.get(i), wrestlerListFromApi.get(i));
+        }
         softAssert.assertAll();
     }
 
